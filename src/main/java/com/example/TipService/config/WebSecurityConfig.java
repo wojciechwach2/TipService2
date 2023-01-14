@@ -1,4 +1,4 @@
-package com.example.porada.config;
+package com.example.TipService.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

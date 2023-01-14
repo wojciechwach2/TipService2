@@ -1,4 +1,4 @@
-package com.example.porada;
+package com.example.TipService;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
