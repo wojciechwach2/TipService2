@@ -1,4 +1,4 @@
-package com.example.porada;
+package com.example.TipService;
 
 import org.junit.jupiter.api.Test;
 
