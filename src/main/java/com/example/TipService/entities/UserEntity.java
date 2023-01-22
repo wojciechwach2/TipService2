@@ -20,14 +20,17 @@ public class UserEntity {
     @Column(nullable = false, unique = true, length = 50)
     private String email;
 
-    @Column(nullable = false, length = 50)
+    @Column(nullable = false, length = 100)
     private String password;
 
     @OneToMany(cascade = CascadeType.REFRESH, mappedBy = "user")
     private List<QuestionEntity> questions;
 
     @Column(unique = true, length = 16)
-    private String nickname;
+    private String username;
+
+    @Column
+    boolean enabled;
 
 
 }

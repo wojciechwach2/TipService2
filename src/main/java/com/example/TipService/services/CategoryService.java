@@ -1,7 +1,7 @@
 package com.example.TipService.services;
 
-import com.example.TipService.DAO.CategoryRepository;
-import com.example.TipService.model.CategoryDTO;
+import com.example.TipService.dao.CategoryRepository;
+import com.example.TipService.model.CategoryDto;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,7 +16,7 @@ public class CategoryService {
 
 
     }
-    public List<CategoryDTO> getAllCategories(){
+    public List<CategoryDto> getAllCategories(){
         return null;
     }
 }

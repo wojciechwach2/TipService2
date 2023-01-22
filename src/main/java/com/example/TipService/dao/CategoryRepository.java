@@ -1,4 +1,4 @@
-package com.example.TipService.DAO;
+package com.example.TipService.dao;
 
 import com.example.TipService.entities.CategoryEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
