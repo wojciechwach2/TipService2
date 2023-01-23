@@ -35,7 +35,7 @@ public class CategoryController {
 
 
     @PostMapping("/add_category")
-    public String addCategory(CategoryDto category) {
+    public String addNewCategory(CategoryDto category) {
         categoryService.getAllCategories();
         return "redirect:/categories";
     }
