@@ -7,9 +7,11 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.List;
+
 @NoArgsConstructor
 @AllArgsConstructor
-@Getter @Setter
+@Getter
+@Setter
 @Entity
 @Table(name = "users")
 public class UserEntity {
@@ -28,6 +30,8 @@ public class UserEntity {
 
     @Column(unique = true, length = 16)
     private String username;
+    @Column
+    private String authority;
 
     @Column
     boolean enabled;

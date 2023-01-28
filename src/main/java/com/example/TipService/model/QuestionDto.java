@@ -5,6 +5,8 @@ import lombok.Setter;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
+import java.util.List;
+
 @Getter
 @Setter
 @Component
@@ -14,4 +16,6 @@ public class QuestionDto {
     private String questionDetails;
     private LocalDate questionDate;
     private String categoryName;
+
+    private List<CommentDto> comments;
 }
