@@ -35,6 +35,8 @@ public class UserController {
         return "new_user";
     }
 
+
+
     @PostMapping("/add_user")
     public String addNewUser( UserDto user) {
         userService.addNewUser(user);

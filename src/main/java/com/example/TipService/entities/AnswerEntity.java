@@ -10,6 +10,7 @@ import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
+
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
@@ -38,10 +39,6 @@ public class AnswerEntity {
     @OneToMany(cascade = CascadeType.REFRESH, mappedBy = "answer")
     private Set<CommentEntity> comments = new HashSet<>();
 
-    @ManyToOne
-    @JoinColumn(name = "question_id")
+    @OneToOne(mappedBy = "answer")
     private QuestionEntity question;
-
-
-
 }

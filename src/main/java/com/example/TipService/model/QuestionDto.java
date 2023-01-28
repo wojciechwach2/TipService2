@@ -16,6 +16,7 @@ public class QuestionDto {
     private String questionDetails;
     private LocalDate questionDate;
     private String categoryName;
+    private AnswerDto answer;
 
     private List<CommentDto> comments;
 }

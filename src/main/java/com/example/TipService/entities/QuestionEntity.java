@@ -8,11 +8,11 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
+
 @NoArgsConstructor
 @AllArgsConstructor
-@Getter @Setter
+@Getter
+@Setter
 @Entity
 public class QuestionEntity {
 
@@ -38,6 +38,7 @@ public class QuestionEntity {
     private CategoryEntity category;
 
 
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH, mappedBy = "question")
-    private List<AnswerEntity> answers = new ArrayList<>();
+    @OneToOne
+    @JoinColumn(name = "id")
+    private AnswerEntity answer;
 }
