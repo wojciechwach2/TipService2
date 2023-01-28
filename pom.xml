@@ -11,8 +11,8 @@
     <groupId>com.example</groupId>
     <artifactId>TipService</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>Porada</name>
-    <description>Porada</description>
+    <name>TipService</name>
+    <description>TipService</description>
     <properties>
         <java.version>17</java.version>
     </properties>

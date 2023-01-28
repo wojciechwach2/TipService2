@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>ShopMax &mdash; Colorlib e-Commerce Template</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <div th:replace="fragments :: style"/>
+</head>
+<body>
+
+<div class="site-wrap">
+
+    <div th:replace="fragments :: menu"/>
+    <div>
+        <div th:if="${question.answer != null}" >someValue</div>
+        <div th:unless="${question.answer != null}"><button type="button">Odpowiedz!</button>
+         <form th:action="@{/add_answer}" th:object="${answer}" method="post"> <!--style="visibility: hidden"-->
+            <label>Name:</label>
+             <input type="text" th:field="*{description}"/>
+            <button>Wyślij odpowiedź</button>
+        </form>
+        </div>
+    </div>
+
+    <div id="comments-section" th:if="${question.comments != null}">
+        <h3>Komentarze</h3>
+        <div class="comment" th:each="comment : ${question.comments}">
+            <div class="comment-header">
+                <span class="username" th:text="${comment.username}"></span>
+                <span class="date" th:text="${comment.date}"></span>
+            </div>
+            <p class="comment-text" th:text="${comment.text}"></p>
+        </div>
+    </div>
+
+    <div th:replace="fragments :: footer"/>
+</div>
+<div th:replace="fragments :: js_scripts"/>
+</body>
+</html>
