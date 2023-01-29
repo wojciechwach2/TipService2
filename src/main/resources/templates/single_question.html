@@ -11,10 +11,10 @@
 <div class="site-wrap">
 
     <div th:replace="fragments :: menu"/>
-    <div th:text="${question.questionDetails}"></div>
-    <div>
-        <div th:if="${question.answer} ne null">
-            <div th:text="${question.answer.description}" ></div>
+    <div class="aaa" th:text="${question.questionDetails}"></div>
+    <div class="bbb">
+        <div class="ccc" th:if="${question.answer != null}" >
+            <div class="ddd" th:text="${question.answer.description}" ></div>
 
         </div>
         <div th:if="${question.answer} == null">

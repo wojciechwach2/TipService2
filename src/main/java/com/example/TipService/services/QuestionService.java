@@ -51,9 +51,18 @@ public class QuestionService {
             questionDto.setQuestionDetails(question.getQuestionDetails());
             questionDto.setQuestionDate(question.getQuestionDate());
             questionDto.setCategoryName(question.getCategory().getName());
+            questionDto.setAnswer(convertAnswerEntityToAnswerDto(question.getAnswer()));
             return questionDto;
         }
         return null;
+
+    }
+    private AnswerDto convertAnswerEntityToAnswerDto (AnswerEntity answerEntity){
+        AnswerDto answerDto = new AnswerDto();
+        answerDto.setDescription(answerEntity.getDescription());
+        answerDto.setAnswerDate(answerEntity.getAnswerDate());
+        answerDto.setRating(answerEntity.getRating());
+        return answerDto;
 
     }
 
