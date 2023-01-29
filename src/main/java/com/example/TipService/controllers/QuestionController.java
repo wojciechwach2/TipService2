@@ -9,8 +9,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import java.time.LocalDate;
-
 @Controller
 public class QuestionController {
 
@@ -26,26 +24,23 @@ public class QuestionController {
         questionService.addQuestion(questionDto);
         return "redirect:/index";
     }
-
     @GetMapping("/questions/{id}")
     public String getQuestion(@PathVariable("id") Long id, Model model) {
         QuestionDto question = questionService.getQuestion(id);
         model.addAttribute("question", question);
         AnswerDto answer = new AnswerDto();
         model.addAttribute("answer", answer);
-        return "singleQuestion";
-
+        return "single_question";
     }
 
-    @GetMapping("/question")
+    @GetMapping("/questions")
     public String getQuestionsForCategory() {
         return "category_list";
 
     }
-
-    @PostMapping("/add_answer")
-    public String addAnswer(AnswerDto answerDto) {
-        questionService.addAnswer(answerDto);
-        return "singleQuestion";
+    @PostMapping("/add_answer/{questionId}")
+    public String addAnswer(@PathVariable("questionId") Long questionId, AnswerDto answerDto) {
+        questionService.addAnswer(questionId, answerDto);
+        return "redirect:/questions/" + questionId;
     }
 }

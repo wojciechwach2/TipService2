@@ -11,6 +11,7 @@ import java.util.List;
 @Setter
 @Component
 public class QuestionDto {
+    private Long id;
     private Long categoryId;
     private String questionSubject;
     private String questionDetails;

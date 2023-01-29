@@ -38,7 +38,6 @@ public class QuestionEntity {
     private CategoryEntity category;
 
 
-    @OneToOne
-    @JoinColumn(name = "id")
+    @OneToOne(mappedBy = "question",fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private AnswerEntity answer;
 }

@@ -11,18 +11,25 @@
 <div class="site-wrap">
 
     <div th:replace="fragments :: menu"/>
+    <div th:text="${question.questionDetails}"></div>
     <div>
-        <div th:if="${question.answer != null}" >someValue</div>
-        <div th:unless="${question.answer != null}"><button type="button">Odpowiedz!</button>
-         <form th:action="@{/add_answer}" th:object="${answer}" method="post"> <!--style="visibility: hidden"-->
-            <label>Name:</label>
-             <input type="text" th:field="*{description}"/>
-            <button>Wyślij odpowiedź</button>
-        </form>
+        <div th:if="${question.answer} ne null">
+            <div th:text="${question.answer.description}" ></div>
+
+        </div>
+        <div th:if="${question.answer} == null">
+            <button type="button">Odpowiedz!</button>
+            <form th:action="@{/add_answer/{questionId} (questionId=${question.id})}" th:object="${answer}" method="post">
+                <!--style="visibility: hidden"-->
+
+                <label>Name:</label>
+                <input type="text" th:field="*{description}"/>
+                <button>Wyślij odpowiedź</button>
+            </form>
         </div>
     </div>
 
-    <div id="comments-section" th:if="${question.comments != null}">
+    <div id="comments-section" th:if="${question.comments} != null">
         <h3>Komentarze</h3>
         <div class="comment" th:each="comment : ${question.comments}">
             <div class="comment-header">
