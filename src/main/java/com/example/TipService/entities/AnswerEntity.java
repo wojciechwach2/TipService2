@@ -39,6 +39,8 @@ public class AnswerEntity {
     @OneToMany(cascade = CascadeType.REFRESH, mappedBy = "answer")
     private Set<CommentEntity> comments = new HashSet<>();
 
-    @OneToOne(mappedBy = "answer")
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "question_id", referencedColumnName = "id")
     private QuestionEntity question;
 }

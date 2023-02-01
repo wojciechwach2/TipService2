@@ -35,7 +35,7 @@ public class QuestionService {
         QuestionEntity questionEntity = new QuestionEntity();
         questionEntity.setQuestionDetails(questionDto.getQuestionDetails());
         questionEntity.setQuestionDate(LocalDate.now());
-        //questionEntity.setAnswers(null); // nowe pytanie nie ma jeszcze odpowiedzi wiec tej linijki nie musi byc
+        //questionEntity.setAnswer(null); // nowe pytanie nie ma jeszcze odpowiedzi wiec tej linijki nie musi byc
         Optional<CategoryEntity> byId = categoryRepository.findById(questionDto.getCategoryId());
         byId.ifPresent(questionEntity::setCategory);
         //questionEntity.setUser(null);
@@ -43,43 +43,46 @@ public class QuestionService {
     }
 
     public QuestionDto getQuestion(long id) {
-        Optional<QuestionEntity> question = questionRepository.findById(id);
-        if (question.isEmpty()) {
-            return null;
+        Optional<QuestionEntity> questionOp = questionRepository.findById(id);
+        if (questionOp.isPresent()) {
+            QuestionDto questionDto = new QuestionDto();
+            QuestionEntity question = questionOp.get();
+            questionDto.setId(question.getId());
+            questionDto.setQuestionDetails(question.getQuestionDetails());
+            questionDto.setQuestionDate(question.getQuestionDate());
+            questionDto.setCategoryName(question.getCategory().getName());
+            questionDto.setAnswer(convertAnswerEntityToAnswerDto(question.getAnswer()));
+            return questionDto;
         }
+        return null;
 
-        QuestionDto questionDto = new QuestionDto();
-        questionDto.setQuestionDetails(question.get().getQuestionDetails());
-        questionDto.setQuestionDate(question.get().getQuestionDate());
-        questionDto.setCategoryName(question.get().getCategory().getName());
-
-//        List<CommentEntity> comments = commentRepository.findById();
-//        if (!comments.isEmpty()) {
-//         questionDto.setComments(comments.stream().map(comment -> new CommentDto(comment.getCommentContent().collect(Collectors.toList()));
-//         }
-        return questionDto;
     }
 
-    public void  addAnswer(AnswerDto answerDto) {
+    private AnswerDto convertAnswerEntityToAnswerDto(AnswerEntity answerEntity) {
+        AnswerDto answerDto = new AnswerDto();
+        answerDto.setDescription(answerEntity.getDescription());
+        answerDto.setAnswerDate(answerEntity.getAnswerDate());
+        answerDto.setRating(answerEntity.getRating());
+        return answerDto;
+
+    }
+
+    public void addAnswer(Long questionId, AnswerDto answerDto) {
         AnswerEntity answer = new AnswerEntity();
         answer.setDescription(answerDto.getDescription());
         answer.setAnswerDate(LocalDate.now());
         answer.setRating(answerDto.getRating());
         UserEntity loggedUserEntity = userService.getLoggedUserEntity();
         answer.setUser(loggedUserEntity);
-        Optional<QuestionEntity> questionEntity = questionRepository.findById(null);
-        answer.setQuestion(questionEntity.get());
-        questionRepository.save(questionEntity.get());
+        Optional<QuestionEntity> questionEntityOp = questionRepository.findById(questionId);
+        QuestionEntity questionEntity = questionEntityOp.get();
+        answer.setQuestion(questionEntity);
+        questionEntity.setAnswer(answer);
+        questionRepository.save(questionEntity);
 
     }
-//    public void changePassword(PasswordDto passwordDto) {
-//        UserEntity user = getLoggedUserEntity();
-//        String currentPassword = passwordEncoder.encode(passwordDto.getCurrentPassword());
-//        if (currentPassword.equals(user.getPassword())) {
-//            if (passwordDto.getNewPassword().equals(passwordDto.getReenteredNewPassword())) {
-//                user.setPassword(passwordEncoder.encode(passwordDto.getNewPassword()));
-//            }
-//        }
-//        userRepository.save(user);
-    }
 
+    public void deleteQuestion(Long id) {
+        questionRepository.deleteById(id);
+    }
+}
