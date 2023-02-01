@@ -1,5 +1,6 @@
 package com.example.TipService.controllers;
 
+import com.example.TipService.model.PasswordDto;
 import com.example.TipService.model.UserDto;
 import com.example.TipService.services.UserService;
 import org.springframework.stereotype.Controller;
@@ -45,6 +46,17 @@ public class UserController {
         userService.deleteUser(id);
 
         return "index";
+    }
+    @GetMapping("/user/password")
+    public String getViewForChangingPassword(Model model) {
+        model.addAttribute("password", new PasswordDto());
+        return "change_password";
+    }
+
+    @PostMapping("/user/password")
+    public String changePassword( PasswordDto passwordDto) {
+        userService.changePassword(passwordDto);
+        return  ("redirect:/");
     }
 }
 

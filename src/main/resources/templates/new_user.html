@@ -22,6 +22,11 @@
     <input type="password" th:field="*{password}" required/>
     <br>
     <input type="submit" value="Create"/>
+    <br>
+    <label th:text="Reset Email">Reset Email:</label>
+    <input type="email" id="resetEmail" name="resetEmail" th:field="*{resetEmail}"/>
+    <button type="submit">Submit</button>
+    <br>
 </form>
 
 </body>

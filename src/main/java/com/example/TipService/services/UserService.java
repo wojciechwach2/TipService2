@@ -2,6 +2,7 @@ package com.example.TipService.services;
 
 import com.example.TipService.dao.UserRepository;
 import com.example.TipService.entities.UserEntity;
+import com.example.TipService.model.PasswordDto;
 import com.example.TipService.model.UserDto;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -73,5 +74,15 @@ public class UserService {
         } else {
             return getUserByUsername(principal.toString());
         }
+    }
+    public void changePassword(PasswordDto passwordDto) {
+        UserEntity user = getLoggedUserEntity();
+        String currentPassword = passwordEncoder.encode(passwordDto.getCurrentPassword());
+        if (currentPassword.equals(user.getPassword())) {
+            if (passwordDto.getNewPassword().equals(passwordDto.getReenteredNewPassword())) {
+                user.setPassword(passwordEncoder.encode(passwordDto.getNewPassword()));
+            }
+        }
+        userRepository.save(user);
     }
 }
