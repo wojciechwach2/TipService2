@@ -5,6 +5,7 @@ import com.example.TipService.model.QuestionDto;
 import com.example.TipService.services.QuestionService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -13,7 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 public class QuestionController {
 
 
-    private QuestionService questionService;
+    private final QuestionService questionService;
 
     public QuestionController(QuestionService questionService) {
         this.questionService = questionService;
@@ -42,5 +43,10 @@ public class QuestionController {
     public String addAnswer(@PathVariable("questionId") Long questionId, AnswerDto answerDto) {
         questionService.addAnswer(questionId, answerDto);
         return "redirect:/questions/" + questionId;
+    }
+    @DeleteMapping
+    public String deleteQuestion(Long id){
+        questionService.deleteQuestion(id);
+        return "redirect:/questions/";
     }
 }

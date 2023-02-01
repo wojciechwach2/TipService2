@@ -56,7 +56,7 @@ public class UserController {
     @PostMapping("/user/password")
     public String changePassword( PasswordDto passwordDto) {
         userService.changePassword(passwordDto);
-        return  ("redirect:/");
+        return  "redirect:/";
     }
 }
 
