@@ -24,7 +24,8 @@
                     <a href="#" class="product-item md-height bg-gray d-block">
                         <!--<img th:src="@{/images/{image} (image=${product.image})}" alt="Image" class="img-fluid">-->
                     </a>
-                    <h2 class="item-title"><a th:href="@{/questions/{categoryId} (categoryId=${category.categoryId})}" th:text="${category.categoryName}"></a></h2>
+                    <h2 class="item-title"><a th:href="@{/questions/{categoryId} (categoryId=${category.categoryId})}"
+                                              th:text="${category.categoryName}"></a></h2>
                     <!--<strong th:text="${product.price}" class="item-price"></strong>-->
 
                     <div class="star-rating">

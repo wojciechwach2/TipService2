@@ -25,6 +25,7 @@ public class QuestionController {
         questionService.addQuestion(questionDto);
         return "redirect:/index";
     }
+
     @GetMapping("/questions/{id}")
     public String getQuestion(@PathVariable("id") Long id, Model model) {
         QuestionDto question = questionService.getQuestion(id);
@@ -39,13 +40,15 @@ public class QuestionController {
         return "category_list";
 
     }
+
     @PostMapping("/add_answer/{questionId}")
     public String addAnswer(@PathVariable("questionId") Long questionId, AnswerDto answerDto) {
         questionService.addAnswer(questionId, answerDto);
         return "redirect:/questions/" + questionId;
     }
+
     @DeleteMapping
-    public String deleteQuestion(Long id){
+    public String deleteQuestion(Long id) {
         questionService.deleteQuestion(id);
         return "redirect:/questions/";
     }

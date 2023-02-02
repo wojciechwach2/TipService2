@@ -5,11 +5,13 @@ import lombok.*;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+
 @NoArgsConstructor
 @AllArgsConstructor
-@Getter @Setter
+@Getter
+@Setter
 @ToString
-@Entity // (lombok @Getter @Setter itd czy wygenerować normalnie )
+@Entity
 
 public class CategoryEntity {
 

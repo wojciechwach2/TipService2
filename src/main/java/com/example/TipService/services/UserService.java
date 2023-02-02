@@ -75,6 +75,7 @@ public class UserService {
             return getUserByUsername(principal.toString());
         }
     }
+
     public void changePassword(PasswordDto passwordDto) {
         UserEntity user = getLoggedUserEntity();
         String currentPassword = passwordEncoder.encode(passwordDto.getCurrentPassword());
