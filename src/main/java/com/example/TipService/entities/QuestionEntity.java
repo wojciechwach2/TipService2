@@ -40,4 +40,5 @@ public class QuestionEntity {
 
     @OneToOne(mappedBy = "question", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private AnswerEntity answer;
+
 }

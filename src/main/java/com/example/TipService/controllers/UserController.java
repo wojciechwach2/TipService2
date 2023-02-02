@@ -34,7 +34,7 @@ public class UserController {
         return "redirect:/profile";
     }
 
-    @PutMapping ("/user")
+    @PutMapping("/user")
     public String editUserProfile(UserDto userDto) {
         userService.editUser(userDto);
         return "redirect:/";
@@ -47,6 +47,7 @@ public class UserController {
 
         return "index";
     }
+
     @GetMapping("/user/password")
     public String getViewForChangingPassword(Model model) {
         model.addAttribute("password", new PasswordDto());
@@ -58,7 +59,9 @@ public class UserController {
         userService.changePassword(passwordDto);
         return "redirect:/";
     }
+
 }
+
 
 
 

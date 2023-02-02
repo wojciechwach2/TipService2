@@ -3,11 +3,9 @@ package com.example.TipService.services;
 import com.example.TipService.dao.CategoryRepository;
 import com.example.TipService.dao.CommentRepository;
 import com.example.TipService.dao.QuestionRepository;
-import com.example.TipService.entities.AnswerEntity;
-import com.example.TipService.entities.CategoryEntity;
-import com.example.TipService.entities.QuestionEntity;
-import com.example.TipService.entities.UserEntity;
+import com.example.TipService.entities.*;
 import com.example.TipService.model.AnswerDto;
+import com.example.TipService.model.CommentDto;
 import com.example.TipService.model.QuestionDto;
 import org.springframework.stereotype.Service;
 
@@ -84,5 +82,19 @@ public class QuestionService {
 
     public void deleteQuestion(Long id) {
         questionRepository.deleteById(id);
+    }
+
+    public void addComment(Long questionId, CommentDto commentDto) {
+        CommentEntity comment = new CommentEntity();
+        comment.setCommentContent(commentDto.getCommentContent());
+        comment.setCommentDate(commentDto.getCommentDate());
+        UserEntity loggedUserEntity = userService.getLoggedUserEntity();
+        comment.setUser(loggedUserEntity);
+        Optional<QuestionEntity> entityOp = questionRepository.findById(questionId);
+        QuestionEntity questionEntity = entityOp.get();
+        comment.setQuestion(questionEntity);
+        questionEntity.setComment;
+        questionRepository.save(questionEntity);
+
     }
 }
