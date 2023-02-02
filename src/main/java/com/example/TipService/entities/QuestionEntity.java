@@ -38,6 +38,6 @@ public class QuestionEntity {
     private CategoryEntity category;
 
 
-    @OneToOne(mappedBy = "question",fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @OneToOne(mappedBy = "question", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private AnswerEntity answer;
 }

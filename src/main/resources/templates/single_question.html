@@ -13,13 +13,14 @@
     <div th:replace="fragments :: menu"/>
     <div class="aaa" th:text="${question.questionDetails}"></div>
     <div class="bbb">
-        <div class="ccc" th:if="${question.answer != null}" >
-            <div class="ddd" th:text="${question.answer.description}" ></div>
+        <div class="ccc" th:if="${question.answer != null}">
+            <div class="ddd" th:text="${question.answer.description}"></div>
 
         </div>
         <div th:if="${question.answer} == null">
             <button type="button">Odpowiedz!</button>
-            <form th:action="@{/add_answer/{questionId} (questionId=${question.id})}" th:object="${answer}" method="post">
+            <form th:action="@{/add_answer/{questionId} (questionId=${question.id})}" th:object="${answer}"
+                  method="post">
                 <!--style="visibility: hidden"-->
 
                 <label>Name:</label>
