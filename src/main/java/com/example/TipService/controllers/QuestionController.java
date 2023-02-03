@@ -1,6 +1,7 @@
 package com.example.TipService.controllers;
 
 import com.example.TipService.model.AnswerDto;
+import com.example.TipService.model.CommentDto;
 import com.example.TipService.model.QuestionDto;
 import com.example.TipService.services.QuestionService;
 import org.springframework.stereotype.Controller;
@@ -51,5 +52,10 @@ public class QuestionController {
     public String deleteQuestion(Long id) {
         questionService.deleteQuestion(id);
         return "redirect:/questions/";
+    }
+    @PostMapping("/add_comment/{questionId}")
+    public String addComment(@PathVariable("questionId") Long questionId, CommentDto commentDto){
+        questionService.addComment(questionId, commentDto);
+        return "redirect:/questions" + questionId;
     }
 }

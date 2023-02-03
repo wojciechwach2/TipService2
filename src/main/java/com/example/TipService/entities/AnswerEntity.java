@@ -33,11 +33,11 @@ public class AnswerEntity {
     private LocalDate answerDate;
 
     @Column
-    private Integer rating; // pozytywny i negatywny ?
+    private Integer rating;
 
 
     @OneToMany(cascade = CascadeType.REFRESH, mappedBy = "answer")
-    private Set<CommentEntity> comments = new HashSet<>();
+    private Set<CommentEntity> comment = new HashSet<>();
 
 
     @OneToOne(cascade = CascadeType.ALL)

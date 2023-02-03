@@ -15,7 +15,7 @@ import java.time.LocalDate;
 @Setter
 @Entity
 public class CommentEntity {
-    // answer, user, content, date
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -33,5 +33,6 @@ public class CommentEntity {
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate commentDate;
+
 
 }

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>TipService &mdash; Colorlib e-Commerce Template</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <div th:replace="fragments :: style"/>
+</head>
+<body>
+- użytkownik przeglądając konkretne pytanie widzi kolejno: treść zadanego pytania, nazwę
+zadającego pytanie oraz datę, kiedy pytanie zostało zadane
+- następnie mamy odpowiedzi na udzielone pytanie w kolejności zgodnej z liczbą
+pozytywnych ocen
+- po każdej udzielonej odpowiedzi możemy podejrzeć komentarze, które zostały dodane do
+danej odpowiedzi. Domyślnie mamy wyświetlone maksymalnie trzy pierwsze komentarze,
+jeśli jest ich więcej, wyświetlić je wszystkie (np. klikając przycisk rozwiń)
+
+<div th:each="answer : ${answer}">
+    <p>Description : {{answer.description}}</p>
+    <p>Username: {{answer.username}}</p>
+    <p>Answer Date: {{answer.date}}</p>
+    <div th:if="${answer.comments.size() > 3}" id="collapseExample">
+        <div th:each="comment : ${answer.comments.subList(0,3)}" th:if="${answer.comments.size() > 3}">
+            <p>Comment content: {{comment.content}}</p>
+            <p>Username: {{comment.username}}</p>
+            <p>Comment date: {{comment.date}}</p>
+        </div>
+        <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample"
+                aria-expanded="false" aria-controls="collapseExample">
+            Rozwiń
+        </button>
+    </div>
+    <div th:if="${answer.comments.size() <= 3}">
+        <div th:each="comment : ${answer.comment}">
+            <p>Comment content: {{comment.content}}</p>
+            <p>Username: {{comment.username}}</p>
+            <p>Comment date: {{comment.date}}</p>
+        </div>
+        - zalogowany użytkownik widzi także obok każdej odpowiedzi przyciski do uznania danej
+        odpowiedź za poprawną lub niepoprawną - ich kliknięcie wpływa na liczbę pozytywnych
+        ocen danej odpowiedzi
+        <div class="answer-rating">
+            <button class="btn btn-success" th:onclick="${answer.positiveRating += 1}">Correct</button>
+            <button class="btn btn-danger" th:onclick="${answer.negativeRating += 1}">Incorrect</button>
+        </div>
+        <div class="answer-rating-count">
+            Positive: <span th:text="${answer.positiveRating}"></span>
+            Negative: <span th:text="${answer.negativeRating}"></span>
+        </div>
+    </div>
+</div>
+</body>
+</html>
