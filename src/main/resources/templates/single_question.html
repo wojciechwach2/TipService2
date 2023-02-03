@@ -23,22 +23,30 @@
                   method="post" >
 <!--                style="visibility: hidden"-->
 
-                <label>Name:</label>
-                <input type="text" th:field="*{description}"/>
-                <button>Wyślij odpowiedź</button>
+<!--                <label>Name:</label>-->
+                <label>
+                    <input type="text" th:field="*{description}"/>
+                </label>
+                <button>Send Answer</button>
             </form>
         </div>
     </div>
 
     <div id="comments-section" th:if="${question.comments} != null">
-        <h3>Komentarze</h3>
+        <h3>Comments</h3>
 
         <div class="comment" th:each="comment : ${question.comments}">
             <div class="comment-header">
-                <span class="username" th:text="${comment.username}"></span>
-                <span class="date" th:text="${comment.date}"></span>
+                <span class="username" th:text="${comment.id}"></span>
+                <span class="date" th:text="${comment.commentDate}"></span>
             </div>
-            <p class="comment-text" th:text="${comment.text}"></p>
+            <p class="comment-text" th:text="${comment.commentContent}"></p>
+            <form th:action="@{/add_comment/{questionId} (questionId=${question.id})}" th:object="${comment}"
+                  method="post" >
+<!--                <label>Name:</label>-->
+                <input type="text" th:field="*{commentContent}"/>
+                <button>Leave Comment</button>
+                </form>
         </div>
     </div>
 
