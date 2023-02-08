@@ -5,7 +5,6 @@ import com.example.TipService.model.AnswerDto;
 import com.example.TipService.model.CommentDto;
 import com.example.TipService.model.QuestionDto;
 import com.example.TipService.services.QuestionService;
-import com.example.TipService.services.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.WebDataBinder;
@@ -17,13 +16,13 @@ public class QuestionController {
 
     private final QuestionService questionService;
     private final QuestionValidator questionValidator;
-    private UserService userService;
 
 
-    public QuestionController(QuestionService questionService, QuestionValidator questionValidator, UserService userService) {
+
+    public QuestionController(QuestionService questionService, QuestionValidator questionValidator) {
         this.questionService = questionService;
         this.questionValidator = questionValidator;
-        this.userService = userService;
+
     }
 
     @PostMapping("/question")
