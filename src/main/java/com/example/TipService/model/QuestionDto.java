@@ -13,7 +13,6 @@ import java.util.List;
 public class QuestionDto {
     private Long id;
     private Long categoryId;
-    private String questionSubject;
     private String questionDetails;
     private LocalDate questionDate;
     private String categoryName;

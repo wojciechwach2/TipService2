@@ -3,6 +3,7 @@ package com.example.TipService.services;
 import com.example.TipService.dao.CategoryRepository;
 import com.example.TipService.entities.CategoryEntity;
 import com.example.TipService.model.CategoryDto;
+import com.example.TipService.model.QuestionDto;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -15,15 +16,20 @@ public class CategoryService {
 
     public CategoryService(CategoryRepository categoryRepository) {
         this.categoryRepository = categoryRepository;
+    }
 
-
+    public CategoryEntity addNewCategory(QuestionDto questionDto) {
+        CategoryEntity category = new CategoryEntity();
+        if (questionDto.getCategoryName() != null) {
+            category.setName(questionDto.getCategoryName());
+            categoryRepository.save(category);
+        }
+        return category;
     }
 
     public List<CategoryDto> getAllCategories() {
         List<CategoryEntity> categories = categoryRepository.findAll();
-
-
-        return null;
+        return convertEntityToDto(categories);
     }
 
     private List<CategoryDto> convertEntityToDto(List<CategoryEntity> entities) {
