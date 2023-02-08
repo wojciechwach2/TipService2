@@ -90,8 +90,6 @@ public class QuestionService {
         comment.setUser(loggedUserEntity);
         Optional<QuestionEntity> entityOp = questionRepository.findById(questionId);
         QuestionEntity questionEntity = entityOp.get();
-//        comment.setQuestion(questionEntity);
-//        questionEntity.setComment;
         questionRepository.save(questionEntity);
 
     }
