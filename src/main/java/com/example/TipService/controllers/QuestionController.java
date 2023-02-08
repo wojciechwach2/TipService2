@@ -1,24 +1,29 @@
 package com.example.TipService.controllers;
 
+import com.example.TipService.controllers.Validators.QuestionValidator;
 import com.example.TipService.model.AnswerDto;
 import com.example.TipService.model.CommentDto;
 import com.example.TipService.model.QuestionDto;
 import com.example.TipService.services.QuestionService;
+import com.example.TipService.services.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class QuestionController {
 
 
     private final QuestionService questionService;
+    private final QuestionValidator questionValidator;
+    private UserService userService;
 
-    public QuestionController(QuestionService questionService) {
+
+    public QuestionController(QuestionService questionService, QuestionValidator questionValidator, UserService userService) {
         this.questionService = questionService;
+        this.questionValidator = questionValidator;
+        this.userService = userService;
     }
 
     @PostMapping("/question")
@@ -57,5 +62,9 @@ public class QuestionController {
     public String addComment(@PathVariable("questionId") Long questionId, CommentDto commentDto){
         questionService.addComment(questionId, commentDto);
         return "redirect:/questions" + questionId;
+    }
+    @InitBinder("question")
+    private void initBinder(WebDataBinder binder) {
+        binder.addValidators(questionValidator);
     }
 }
