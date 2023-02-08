@@ -1,4 +1,4 @@
-package com.example.TipService.Validators;
+package com.example.TipService.controllers.Validators;
 
 import com.example.TipService.model.CategoryDto;
 import com.example.TipService.model.QuestionDto;

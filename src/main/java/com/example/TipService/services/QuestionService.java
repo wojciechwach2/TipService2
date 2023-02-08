@@ -33,10 +33,8 @@ public class QuestionService {
         QuestionEntity questionEntity = new QuestionEntity();
         questionEntity.setQuestionDetails(questionDto.getQuestionDetails());
         questionEntity.setQuestionDate(LocalDate.now());
-        //questionEntity.setAnswer(null); // nowe pytanie nie ma jeszcze odpowiedzi wiec tej linijki nie musi byc
         Optional<CategoryEntity> byId = categoryRepository.findById(questionDto.getCategoryId());
         byId.ifPresent(questionEntity::setCategory);
-        //questionEntity.setUser(null);
         questionRepository.save(questionEntity);
     }
 

@@ -5,10 +5,7 @@ import com.example.TipService.model.UserDto;
 import com.example.TipService.services.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class UserController {
@@ -29,9 +26,9 @@ public class UserController {
     }
 
     @PostMapping("/add_user")
-    public String addNewUser(UserDto user) {
+    public String addNewUser(@ModelAttribute("user") UserDto user) {
         userService.addNewUser(user);
-        return "redirect:/profile";
+        return "redirect:/";
     }
 
     @PutMapping("/user")

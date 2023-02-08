@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Fragments</title>
@@ -66,7 +66,8 @@
                     <span class="icon-shopping-bag"></span>
                     <span class="number">2</span>
                 </a>
-                <a href="#" class="site-menu-toggle js-menu-toggle ml-3 d-inline-block d-lg-none"><span class="icon-menu"></span></a>
+                <a href="#" class="site-menu-toggle js-menu-toggle ml-3 d-inline-block d-lg-none"><span
+                        class="icon-menu"></span></a>
             </div>
         </div>
     </div>
@@ -79,9 +80,9 @@
                 <div class="col-md-6 col-lg-3 mb-4 mb-lg-0">
                     <h3 class="footer-heading mb-4">Promo</h3>
                     <a href="#" class="block-6">
-                        <img th:src="@{/images/about_1.jpg}" alt="Image placeholder" class="img-fluid rounded mb-4">
-                        <h3 class="font-weight-light  mb-0">Finding Your Perfect Shirts This Summer</h3>
-                        <p>Promo from  July 15 &mdash; 25, 2019</p>
+                        <img th:src="@{/images/promo.jpg}" alt="Image placeholder" class="img-fluid rounded mb-4">
+                        <h3 class="font-weight-light  mb-0">Maybe this will interest you:</h3>
+                        <p>Actual promo</p>
                     </a>
                 </div>
                 <div class="col-lg-5 ml-auto mb-5 mb-lg-0">
@@ -118,9 +119,9 @@
                     <div class="block-5 mb-5">
                         <h3 class="footer-heading mb-4">Contact Info</h3>
                         <ul class="list-unstyled">
-                            <li class="address">203 Fake St. Mountain View, San Francisco, California, USA</li>
-                            <li class="phone"><a href="tel://23923929210">+2 392 3929 210</a></li>
-                            <li class="email">emailaddress@domain.com</li>
+                            <li class="address">11041 Main St, Penngrove, California,</li>
+                            <li class="phone"><a href="tel://707 795-5783">(707) 795-5783</a></li>
+                            <li class="email">address@domain.com</li>
                         </ul>
                     </div>
 
@@ -138,7 +139,9 @@
             <div class="row pt-5 mt-5 text-center">
                 <div class="col-md-12">
                     <p>
-                        Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="icon-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank" class="text-primary">Colorlib</a>
+                        Copyright &copy;<script>document.write(new Date().getFullYear());</script>
+                        All rights reserved | This template is made with <i class="icon-heart" aria-hidden="true"></i>
+                        by <a href="https://colorlib.com" target="_blank" class="text-primary">Colorlib</a>
                     </p>
                 </div>
 
@@ -148,12 +151,12 @@
 </th:block>
 
 <div th:fragment="js_scripts">
-    <script th:src="@{/js/jquery-3.3.1.min.js}" ></script>
-    <script th:src="@{/js/js/jquery-ui.js}" ></script>
-    <script th:src="@{/js/js/popper.min.js}" ></script>
-    <script th:src="@{/js/bootstrap.min.js}" ></script>
-    <script th:src="@{/js/owl.carousel.min.js}" ></script>
-    <script th:src="@{/js/jquery.magnific-popup.min.js}" ></script>
+    <script th:src="@{/js/jquery-3.3.1.min.js}"></script>
+    <script th:src="@{/js/js/jquery-ui.js}"></script>
+    <script th:src="@{/js/js/popper.min.js}"></script>
+    <script th:src="@{/js/bootstrap.min.js}"></script>
+    <script th:src="@{/js/owl.carousel.min.js}"></script>
+    <script th:src="@{/js/jquery.magnific-popup.min.js}"></script>
     <script th:src="@{/js/aos.js}"></script>
     <script th:src="@{/js/main.js}"></script>
 </div>
